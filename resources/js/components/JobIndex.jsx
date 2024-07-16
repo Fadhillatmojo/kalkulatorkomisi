@@ -23,8 +23,9 @@ function JobIndex() {
     return (
         <section>
             <AddJobForm onSuccess={fetchJobs} /> {/* Mengirimkan callback onSuccess untuk memperbarui data */}
-            <table className="table">
-                <thead>
+            <br />
+            <table className="table table-bordered">
+                <thead className="table-light">
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Marketing/Employee</th>
@@ -48,7 +49,12 @@ function JobIndex() {
                             <td>{job.created_at}</td>
                             <td>
                                 {/* Actions */}
-                                {/* Tambahkan tombol edit dan delete sesuai kebutuhan */}
+                                <button className="btn btn-info">
+                                    Edit
+                                </button>
+                                <button className="btn btn-danger">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     ))}

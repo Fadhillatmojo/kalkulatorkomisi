@@ -49,33 +49,33 @@ function AddJobForm({ onSuccess }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Employee:</label>
-                <select value={employeeId} onChange={e => setEmployeeId(e.target.value)} required>
+        <form onSubmit={handleSubmit} className="mb-4">
+            <div className="mb-3">
+                <label htmlFor="employeeId" className="form-label">Employee:</label>
+                <select id="employeeId" className="form-select" value={employeeId} onChange={e => setEmployeeId(e.target.value)} required>
                     <option value="">Pilih Employee</option>
-                    {employeeOptions.map(employee => (
-                        <option key={employee.id} value={employee.id}>{employee.name}</option>
-                    ))}
+                    {/* Contoh opsi statis, ganti dengan data yang sesuai */}
+                    <option value="1">John Doe</option>
+                    <option value="2">Jane Smith</option>
                 </select>
             </div>
-            <div>
-                <label>Marketing:</label>
-                <input type="text" value={marketing} onChange={e => setMarketing(e.target.value)} required />
+            <div className="mb-3">
+                <label htmlFor="marketing" className="form-label">Marketing:</label>
+                <input type="text" id="marketing" className="form-control" value={marketing} onChange={e => setMarketing(e.target.value)} required />
             </div>
-            <div>
-                <label>Period Job:</label>
-                <input type="date" value={periodJob} onChange={e => setPeriodJob(e.target.value)} required />
+            <div className="mb-3">
+                <label htmlFor="periodJob" className="form-label">Period Job:</label>
+                <input type="date" id="periodJob" className="form-control" value={periodJob} onChange={e => setPeriodJob(e.target.value)} required />
             </div>
-            <div>
-                <label>Amount:</label>
-                <input type="number" value={amount} onChange={e => setAmount(e.target.value)} required />
+            <div className="mb-3">
+                <label htmlFor="amount" className="form-label">Amount:</label>
+                <input type="number" id="amount" className="form-control" value={amount} onChange={e => setAmount(e.target.value)} required />
             </div>
-            <div>
-                <label>Gross Profit:</label>
-                <input type="number" value={grossProfit} onChange={e => setGrossProfit(e.target.value)} required />
+            <div className="mb-3">
+                <label htmlFor="grossProfit" className="form-label">Gross Profit:</label>
+                <input type="number" id="grossProfit" className="form-control" value={grossProfit} onChange={e => setGrossProfit(e.target.value)} required />
             </div>
-            <button type="submit">Add Job</button>
+            <button type="submit" className="btn btn-primary">Add Job</button>
         </form>
     );
 }

@@ -41,11 +41,8 @@ class JobController extends Controller
 
             return response()->json($job, 201); // Respond with the created job and HTTP status 201 (Created)
         } catch (\Exception $e) {
-            // Log the error
-            // Log::error('Error adding job: ' . $e->getMessage());
-
             // Return an error response
-            return response()->json(['error' => 'Failed to add job.'], 500); // HTTP status 500 (Internal Server Error)
+            return response()->json(['error' => $e], 500); // HTTP status 500 (Internal Server Error)
         }
 
     }

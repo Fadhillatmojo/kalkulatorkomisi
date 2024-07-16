@@ -9,9 +9,11 @@ class Job extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'employee_id',
         'marketing',
         'period_job',
         'amount',
-        'gross_profit'
+        'gross_profit',
+        'commission'
     ];
 }
