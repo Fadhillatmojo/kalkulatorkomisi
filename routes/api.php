@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardControlller;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,5 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/dashboard', [DashboardControlller::class, 'index']);
+Route::get('/marketing-chart', [DashboardControlller::class, 'marketingChart']);
+Route::get('/profit-chart', [DashboardControlller::class, 'profitChart']);
+Route::apiResource('employees', EmployeeController::class);
 Route::apiResource('jobs', JobController::class);

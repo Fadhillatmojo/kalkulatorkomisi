@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('employee_id');
             $table->string('marketing');
             $table->date('period_job');
-            $table->decimal('amount', 10, 2);
-            $table->decimal('gross_profit', 10, 2);
+            $table->bigInteger('amount');
+            $table->bigInteger('gross_profit');
+            $table->bigInteger('commission')->nullable();
             $table->timestamps();
+
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });
     }
 

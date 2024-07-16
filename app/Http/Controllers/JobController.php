@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Models\Job;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreJobRequest;
-use App\Http\Requests\UpdateJobRequest;
 
 class JobController extends Controller
 {
@@ -17,14 +16,38 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
-        $job = new Job();
-        $job->marketing = $request->marketing;
-        $job->period_job = $request->period_job;
-        $job->amount = $request->amount;
-        $job->gross_profit = $request->gross_profit;
-        $job->save();
+        try {
+            // Validate request data
+            $request->validate([
+                'employee_id' => 'required',
+                'marketing' => 'required|string',
+                'period_job' => 'required|date',
+                'amount' => 'required|numeric',
+                'gross_profit' => 'required|numeric',
+            ]);
 
-        return response()->json($job);
+            // Calculate commission
+            $commission = $request->gross_profit * 0.1;
+
+            // Save job data to database
+            $job = Job::create([
+                'employee_id' => $request->employee_id,
+                'marketing' => $request->marketing,
+                'period_job' => $request->period_job,
+                'amount' => $request->amount,
+                'gross_profit' => $request->gross_profit,
+                'commission' => $commission,
+            ]);
+
+            return response()->json($job, 201); // Respond with the created job and HTTP status 201 (Created)
+        } catch (\Exception $e) {
+            // Log the error
+            // Log::error('Error adding job: ' . $e->getMessage());
+
+            // Return an error response
+            return response()->json(['error' => 'Failed to add job.'], 500); // HTTP status 500 (Internal Server Error)
+        }
+
     }
 
     public function show($id)
